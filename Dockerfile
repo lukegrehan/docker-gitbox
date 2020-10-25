@@ -36,13 +36,12 @@ RUN sed -i 's/FCGI_USER="www-data"/FCGI_USER="git"/g' /etc/init.d/fcgiwrap && \
     sed -i 's/FCGI_SOCKET_GROUP="www-data"/FCGI_SOCKET_GROUP="git"/g' /etc/init.d/fcgiwrap
 
 # Install gitlist
-
-RUN mkdir -p /var/www && \
-    curl -L https://github.com/klaussilveira/gitlist/releases/download/1.0.1/gitlist-1.0.1.tar.gz --output /var/www/gitlist-v1.0.1.tar.gz && \
-    tar -zxvf /var/www/gitlist-v1.0.1.tar.gz -C /var/www && \
-    chmod -R 777 /var/www/gitlist && \
-    mkdir -p /var/www/gitlist/cache && \
-    chmod 777 /var/www/gitlist/cache
+RUN mkdir -p /var/www
+RUN wget -q -O /var/www/gitlist-v1.0.1.tar.gz https://github.com/klaussilveira/gitlist/releases/download/1.0.1/gitlist-1.0.1.tar.gz
+RUN tar -zxvf /var/www/gitlist*.tar.gz -C /var/www
+RUN chmod -R 777 /var/www/gitlist
+RUN mkdir -p /var/www/gitlist/cache
+RUN chmod 777 /var/www/gitlist/cache
 
 # Create config files for container startup and nginx
 COPY nginx.conf /etc/nginx/nginx.conf
