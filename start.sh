@@ -79,13 +79,6 @@ startc
 
 #pause script to keep container running...
 sflog "Services for container successfully started."
-stop="no"
-while [ "$stop" == "no" ]
-do
-sflog "Type [stop] or run 'docker stop ${CNAME}' from host."
-read input
-if [ "$input" == "stop" ]; then stop="yes"; fi
+while true; do
+  sleep 1;
 done
-
-#stop init.d services
-stopc
