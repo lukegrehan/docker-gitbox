@@ -94,7 +94,7 @@ repo-new() {
     #if ends with .git
     if [[ $NEW =~ \.git$ ]]; then
         if $(git init --bare --shared $REPO/$NEW &> /dev/null && true || false); then
-            echo $DESC > $REPO/$NEW/description
+            echo "$DESC" > $REPO/$NEW/description
             repo-init
             sflog "Created new repository ${NEW} in ${REPO}"
         else
