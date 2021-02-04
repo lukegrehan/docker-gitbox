@@ -7,7 +7,7 @@ set -e
 
 USER="git"
 GROUP="git"
-MOD="644"
+MOD="755"
 REPO="/repos"
 QUIET=false
 #SFLOG="/repo-admin.log"
@@ -93,7 +93,7 @@ repo-new() {
     repo-init
     #if ends with .git
     if [[ $NEW =~ \.git$ ]]; then
-        if $(git init --bare --shared $REPO/$NEW &> /dev/null && true || false); then
+        if $(git init --bare $REPO/$NEW &> /dev/null && true || false); then
             echo "$DESC" > $REPO/$NEW/description
             repo-init
             sflog "Created new repository ${NEW} in ${REPO}"
@@ -113,7 +113,7 @@ repo-clone() {
     CLONE="$(echo "$(echo "$URL" | grep / | cut -d/ -f $(($(grep -o '/' <<< "$URL" | wc -l)+1)) -)")"
     #if ends with .git
     if [[ $CLONE =~ \.git$ ]]; then
-        if $(git clone --bare --shared $URL $REPO/$CLONE/ &> /dev/null && true || false); then
+        if $(git clone --bare $URL $REPO/$CLONE/ &> /dev/null && true || false); then
             echo "Cloned from ${URL}" > $REPO/$CLONE/description
             repo-init
             sflog "Cloned repository ${CLONE} in ${REPO}"
