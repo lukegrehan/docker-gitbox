@@ -1,5 +1,8 @@
 GITBOX
 ======
+
+# *Don't bother - use [klaus](https://github.com/jonashaag/klaus) instead*
+
 Gitbox is a docker image that combines a preconfigured [git](https://git-scm.com) server utilizing the git [smart-http](https://git-scm.com/book/en/v2/Git-on-the-Server-Smart-HTTP) service for repository access. This is complemented by an installation of [gitlist](https://github.com/klaussilveira/gitlist). Git **smart-http** and **gitlist** are served via [nginx](http://nginx.org).
 
 Installation:
